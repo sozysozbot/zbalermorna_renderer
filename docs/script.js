@@ -82,7 +82,14 @@ function dequeue(ctx)
 
 function output_syllable(ctx, str, m,n)
 {
-	for(var i=0; i<str.length; i++) {
-		make_image(ctx,str.charAt(i), 30+WIDTH*m, 30+VSPACE*n);
+	make_image(ctx,str.charAt(0), 30+WIDTH*m, 30+VSPACE*n);
+	if(str.length >= 2) {
+		var vowel = str.slice(1);
+	
+		if(["a","e","i","o","u","y","ai","ei","oi","au"].indexOf(vowel) !== -1) {
+			make_image(ctx,vowel, 30+WIDTH*m, 30+VSPACE*n);
+		} else {
+			throw new Error("Unrecognized vowel sequence \""+vowel+"\"");
+		}
 	}
 }
