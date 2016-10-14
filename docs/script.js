@@ -41,8 +41,13 @@ function writeLine2(ctx, str, m,n)
 			str = str.slice(syl[0].length);
 			arr[arr.length] = syl[0];
 			continue;
+		} else {
+			str = str.slice(1); //failed to parse a character; thus overlooks it
+			if(arr[arr.length-1] !== "_" && str.charAt(0) !== " ") { // "a*b" -> "a b"; "a* b" -> "a b"
+				arr[arr.length] = "_";
+			}
+			continue;
 		}
-		else throw new Error("Meh.")
 		
 	}
 	writeLine(ctx, arr, m,n);
