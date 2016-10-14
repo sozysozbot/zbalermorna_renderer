@@ -10,13 +10,7 @@ function draw(txt) {
   for(var i=0; i<arr.length; i++) {
 	 writeLine2(ctx,arr[i],0,i) 
   }
-}
-
-function output_syllable(ctx, str, m,n)
-{
-	for(var i=0; i<str.length; i++) {
-		make_image(ctx,str.charAt(i), 30+WIDTH*m, 30+VSPACE*n);
-	}
+  setTimeout(function(){dequeue(ctx);},250);
 }
 
 function writeLine2(ctx, str, m,n)
@@ -48,11 +42,27 @@ function writeLine(ctx, array, m, n)
 	}
 }
 
+var QUEUE = [];
+
 function make_image(ctx,chr,x,y)
 {
 	var img = new Image();
 	img.src = "../" + chr + ".png?" + Math.random();
-	img.onload = function() {
-		ctx.drawImage(img, x, y);
-	}	
+	QUEUE[QUEUE.length] = [img, x, y];
+}
+
+function dequeue(ctx)
+{
+	for(var i=0; i<QUEUE.length; i++){
+		var obj = QUEUE[i];
+		ctx.drawImage(obj[0],obj[1],obj[2]);
+	}
+	QUEUE = [];
+}
+
+function output_syllable(ctx, str, m,n)
+{
+	for(var i=0; i<str.length; i++) {
+		make_image(ctx,str.charAt(i), 30+WIDTH*m, 30+VSPACE*n);
+	}
 }
