@@ -31,12 +31,25 @@ function writeLine2(ctx, str, m,n)
 			arr[arr.length] = "_";
 			continue;
 		}
+		
+		if("iu".indexOf(str.charAt(0)) !== -1 && "aeiouy".indexOf(str.charAt(1)) !== -1) {
+			var semivowel = str.charAt(0) === "i" ? "q" : "w";
+			str = semivowel + str.slice(1);
+			continue;
+		}
+		
+		if(str.charAt(0) === "." && "iu".indexOf(str.charAt(1)) !== -1 && "aeiouy".indexOf(str.charAt(2)) !== -1) {
+			var semivowel = str.charAt(1) === "i" ? "q" : "w";
+			str = semivowel + str.slice(2);
+			continue;
+		}
+		
 		if("aeiouy".indexOf(str.charAt(0)) !== -1) {
 			str = "." + str;
 			continue;
 		}
 		
-		var syl = str.match(/^[bcdfghjklmnprstvxz.][aeiouy]*/);
+		var syl = str.match(/^[bcdfghjklmnpqrstvwxz.][aeiouy]*/);
 		if(syl){
 			str = str.slice(syl[0].length);
 			arr[arr.length] = syl[0];
