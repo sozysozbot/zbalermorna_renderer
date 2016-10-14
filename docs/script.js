@@ -1,3 +1,7 @@
+onload = function() {
+  draw(document.getElementById('txt').value);
+};
+
 var WIDTH=42;
 var VSPACE=100;
 
@@ -6,6 +10,7 @@ function draw(txt) {
   if ( ! canvas || ! canvas.getContext ) { return false; }
   var ctx = canvas.getContext('2d');
   
+  ctx.clearRect(0,0,10000,10000)
   var arr = txt.split("\n");
   for(var i=0; i<arr.length; i++) {
 	 writeLine2(ctx,arr[i],0,i) 
