@@ -65,7 +65,7 @@ var QUEUE = [];
 function make_image(ctx,chr,x,y)
 {
 	var img = new Image();
-	img.src = "../" + chr + ".png";
+	img.src = "img/" + chr + ".png";
 	QUEUE[QUEUE.length] = [img, x, y];
 }
 
