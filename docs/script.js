@@ -9,43 +9,22 @@ function draw() {
   var canvas = document.getElementById('c1');
   if ( ! canvas || ! canvas.getContext ) { return false; }
   var ctx = canvas.getContext('2d');
-  output_syllable(ctx, "bi", 0,0);
-  output_syllable(ctx, "r",  1,0);
-  output_syllable(ctx, "ti", 2,0);
-  output_syllable(ctx, "_",  3,0);
-  output_syllable(ctx, "lo", 4,0);
-  output_syllable(ctx, "l",  5,0);
-  output_syllable(ctx, "di", 6,0);
-  output_syllable(ctx, "_",  7,0);
- 
-  output_syllable(ctx, "b",  0,1);
-  output_syllable(ctx, "c",  1,1);
-  output_syllable(ctx, "d",  2,1);
-  output_syllable(ctx, "f",  3,1);
-  output_syllable(ctx, "g",  4,1);
-  output_syllable(ctx, "j",  5,1);
-  output_syllable(ctx, "k",  6,1);
-  output_syllable(ctx, "l",  7,1);
-  output_syllable(ctx, "m",  8,1);
-  output_syllable(ctx, "n",  9,1);
-  output_syllable(ctx, "p", 10,1);
-  output_syllable(ctx, "r", 11,1);
-  output_syllable(ctx, "s", 12,1);
-  output_syllable(ctx, "t", 13,1);
-  output_syllable(ctx, "v", 14,1);
-  output_syllable(ctx, "x", 15,1);
-  output_syllable(ctx, "z", 16,1);
-  
-  output_syllable(ctx, "xa", 0,2);
-  output_syllable(ctx, "g",  1,2);
-  output_syllable(ctx, "ji", 2,2);
-
+  writeLine(ctx,"bi,r,ti,_,lo,l,di,_".split(","),0,0)
+  writeLine(ctx,"b,c,d,f,g,j,k,l,m,n,p,r,s,t,v,x,z".split(","),0,1)
+  writeLine(ctx,"xa,g,ji".split(","),0,2)
 }
 
 function output_syllable(ctx, str, m,n)
 {
 	for(var i=0; i<str.length; i++) {
 		make_image(ctx,str.charAt(i), 30+WIDTH*m, 30+VSPACE*n);
+	}
+}
+
+function writeLine(ctx, array, m, n)
+{
+	for(var i=0; i<array.length; i++) {
+		output_syllable(ctx, array[i], m+i,n);
 	}
 }
 
