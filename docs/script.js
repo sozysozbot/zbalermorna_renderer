@@ -19,7 +19,7 @@ function draw() {
 function make_image(ctx,chr,x,y)
 {
 	var img = new Image();
-	img.src = chr + ".png?" + Math.random();
+	img.src = "../" + chr + ".png?" + Math.random();
 	img.onload = function() {
 		ctx.drawImage(img, x, y);
 	}	
