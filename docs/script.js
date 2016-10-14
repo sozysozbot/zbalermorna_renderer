@@ -31,6 +31,10 @@ function writeLine2(ctx, str, m,n)
 			arr[arr.length] = "_";
 			continue;
 		}
+		if("aeiouy".indexOf(str.charAt(0)) !== -1) {
+			str = "." + str;
+			continue;
+		}
 		
 		var syl = str.match(/^[bcdfghjklmnprstvxz.][aeiouy]*/);
 		if(syl){
