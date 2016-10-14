@@ -35,6 +35,10 @@ function draw() {
   output_syllable(ctx, "v", 14,1);
   output_syllable(ctx, "x", 15,1);
   output_syllable(ctx, "z", 16,1);
+  
+  output_syllable(ctx, "xa", 0,2);
+  output_syllable(ctx, "g",  1,2);
+  output_syllable(ctx, "ji", 2,2);
 
 }
 
