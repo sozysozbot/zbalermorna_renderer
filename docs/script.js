@@ -20,6 +20,7 @@ function draw(txt) {
 
 function writeLine2(ctx, str, m,n)
 {
+	str = str.replace(/['’]/g,"h");
 	var arr = [];
 	while(str.length){
 		if(str.charAt(0) === " "){ 
@@ -28,7 +29,7 @@ function writeLine2(ctx, str, m,n)
 			continue;
 		}
 		
-		var syl = str.match(/[bcdfgjklmnprstvxz.][aeiouy]*/);
+		var syl = str.match(/^[bcdfghjklmnprstvxz.][aeiouy]*/);
 		if(syl){
 			str = str.slice(syl[0].length);
 			arr[arr.length] = syl[0];
