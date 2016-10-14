@@ -28,7 +28,7 @@ function writeLine2(ctx, str, m,n)
 			continue;
 		}
 		
-		var syl = str.match(/[bcdfgjklmnprstvxz][aeiouy]*/);
+		var syl = str.match(/[bcdfgjklmnprstvxz.][aeiouy]*/);
 		if(syl){
 			str = str.slice(syl[0].length);
 			arr[arr.length] = syl[0];
