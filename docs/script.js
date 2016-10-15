@@ -1,3 +1,24 @@
+var IMGS = {};
+var LOADED = {};
+
+function load_all_imgs()
+{
+	var list = ["a","ai","au","b","c","d","denpa","e","ei","f","g","h","i","j","k","l","m","n","o","oi","p","q","r","s","t","u","v","w","x","y","z","space"];
+	for(var i=0; i<list.length; i++) {
+		LOADED[list[i]] = false;
+	}
+	for(var i=0; i<list.length; i++) {
+		var img = new Image();
+		IMGS[list[i]] = img;
+		img.src = "img/" + list[i] + ".png";
+		img.onload = function(){
+			LOADED[list[i]] = true;
+		};
+	}
+}
+
+load_all_imgs();
+
 onload = function() {
   draw(document.getElementById('txt').value);
 };
@@ -7,21 +28,22 @@ var VSPACE = 100;
 
 function draw(txt) {
 	var canvas = document.getElementById('c1');
-	if ( ! canvas || ! canvas.getContext ) { return false; }
-	var ctx = canvas.getContext('2d');
+
   try{
+	if (!canvas || !canvas.getContext) {
+		throw new Error("Sorry, this browser does not support canvas. Use a newer browser.");
+	}
+	var ctx = canvas.getContext('2d');
 	ctx.clearRect(0,0,10000,10000)
 	var arr = txt.split("\n");
 	for(var i=0; i<arr.length; i++) {
 		writeLine2(arr[i],0,i) 
 	}
-	setTimeout(function(){dequeue(ctx);},250);
+	dequeue(ctx);
   }catch(e){
 	alert(e);
   }
 }
-
-
 
 function writeLine2(str, m,n)
 {
