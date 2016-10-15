@@ -13,7 +13,7 @@ function draw(txt) {
 	ctx.clearRect(0,0,10000,10000)
 	var arr = txt.split("\n");
 	for(var i=0; i<arr.length; i++) {
-		writeLine2(ctx,arr[i],0,i) 
+		writeLine2(arr[i],0,i) 
 	}
 	setTimeout(function(){dequeue(ctx);},250);
   }catch(e){
@@ -23,17 +23,17 @@ function draw(txt) {
 
 
 
-function writeLine2(ctx, str, m,n)
+function writeLine2(str, m,n)
 {
 	var array = split_into_syllables(str);
 	for(var i=0; i<array.length; i++) {
-		output_syllable(ctx, array[i], m+i,n);
+		output_syllable(array[i], m+i,n);
 	}
 }
 
 var QUEUE = [];
 
-function make_image(ctx,chr,x,y)
+function make_image(chr,x,y)
 {
 	if(chr === "_") chr = "space";
 	if(chr === ".") chr = "denpa";
@@ -51,14 +51,14 @@ function dequeue(ctx)
 	QUEUE = [];
 }
 
-function output_syllable(ctx, str, m,n)
+function output_syllable(str, m,n)
 {
-	make_image(ctx,str.charAt(0), 30+WIDTH*m, 30+VSPACE*n);
+	make_image(str.charAt(0), 30+WIDTH*m, 30+VSPACE*n);
 	if(str.length >= 2) {
 		var vowel = str.slice(1);
 	
 		if(["a","e","i","o","u","y","ai","ei","oi","au"].indexOf(vowel) !== -1) {
-			make_image(ctx,vowel, 30+WIDTH*m, 30+VSPACE*n);
+			make_image(vowel, 30+WIDTH*m, 30+VSPACE*n);
 		} else {
 			throw new Error("Unrecognized vowel sequence \""+vowel+"\"");
 		}
