@@ -2,8 +2,8 @@ onload = function() {
   draw(document.getElementById('txt').value);
 };
 
-var WIDTH=42;
-var VSPACE=100;
+var WIDTH = 42;
+var VSPACE = 100;
 
 function draw(txt) {
 	var canvas = document.getElementById('c1');
@@ -25,11 +25,7 @@ function draw(txt) {
 
 function writeLine2(ctx, str, m,n)
 {
-	writeLine(ctx, split_into_syllables(str), m,n);
-}
-
-function writeLine(ctx, array, m, n)
-{
+	var array = split_into_syllables(str);
 	for(var i=0; i<array.length; i++) {
 		output_syllable(ctx, array[i], m+i,n);
 	}
