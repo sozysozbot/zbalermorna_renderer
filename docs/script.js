@@ -21,7 +21,7 @@ function draw(txt) {
   }
 }
 
-function writeLine2(ctx, str, m,n)
+function split_into_syllables(str)
 {
 	str = str.replace(/['’]/g,"h");
 	var arr = [];
@@ -63,7 +63,12 @@ function writeLine2(ctx, str, m,n)
 		}
 		
 	}
-	writeLine(ctx, arr, m,n);
+	return arr;
+}
+
+function writeLine2(ctx, str, m,n)
+{
+	writeLine(ctx, split_into_syllables(str), m,n);
 }
 
 function writeLine(ctx, array, m, n)
