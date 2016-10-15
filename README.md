@@ -10,3 +10,4 @@ Can now handle diphthongs and semivowels.
 2. Silence, stretch & intonation
 3. Dynamics (stress dots)
 4. Attitudinal shorthand
+5. Make `.` and `'` half the width of other consonants
