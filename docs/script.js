@@ -72,9 +72,7 @@ function make_image(chr,x,y)
 {
 	if(chr === "_") chr = "space";
 	if(chr === ".") chr = "denpa";
-	var img = new Image();
-	img.src = "img/" + chr + ".png";
-	QUEUE[QUEUE.length] = [img, x, y];
+	QUEUE[QUEUE.length] = [IMGS[chr], x, y];
 }
 
 function dequeue(ctx)
