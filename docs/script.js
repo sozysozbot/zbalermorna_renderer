@@ -83,8 +83,9 @@ function draw(txt) {
 function writeLine2(str, n)
 {
 	var array = split_into_syllables(str);
+	var pos = 25;
 	for(var i=0; i<array.length; i++) {
-		output_syllable(array[i], 30+WIDTH*i, n);
+		pos = output_syllable(array[i], pos, n);
 	}
 }
 
@@ -100,4 +101,5 @@ function output_syllable(str, x_pos,n)
 			throw new Error("Unrecognized vowel sequence \""+vowel+"\"");
 		}
 	}
+	return x_pos + WIDTH; // next x_pos
 }
