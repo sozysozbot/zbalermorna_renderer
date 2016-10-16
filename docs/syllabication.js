@@ -1,6 +1,6 @@
-function split_into_syllables(str)
+﻿function split_into_syllables(str)
 {
-	str = str.replace(/['�f]/g,"h");
+	str = str.replace(/['’]/g,"h");
 	var arr = [];
 	while(str.length){
 		if(str.charAt(0) === " "){ 

@@ -1,4 +1,4 @@
-var IMGS = {};
+﻿var IMGS = {};
 var LOADED = {};
 
 function load_all_imgs()
@@ -60,7 +60,7 @@ function writeLine2(str, n)
 {
 	var array = split_into_syllables(str);
 	for(var i=0; i<array.length; i++) {
-		output_syllable(array[i], i,n);
+		output_syllable(array[i], 30+WIDTH*i, n);
 	}
 }
 
@@ -82,14 +82,14 @@ function dequeue(ctx)
 	QUEUE = [];
 }
 
-function output_syllable(str, m,n)
+function output_syllable(str, x_pos,n)
 {
-	make_image(str.charAt(0), 30+WIDTH*m, 30+VSPACE*n);
+	make_image(str.charAt(0), x_pos, 30+VSPACE*n);
 	if(str.length >= 2) {
 		var vowel = str.slice(1);
 	
 		if(["a","e","i","o","u","y","ai","ei","oi","au"].indexOf(vowel) !== -1) {
-			make_image(vowel, 30+WIDTH*m, 30+VSPACE*n);
+			make_image(vowel, x_pos, 30+VSPACE*n);
 		} else {
 			throw new Error("Unrecognized vowel sequence \""+vowel+"\"");
 		}
