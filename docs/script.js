@@ -20,8 +20,6 @@ function load_all_imgs()
 load_all_imgs();
 
 var timeout;
-
-    
 onload = function() {
 	draw(document.getElementById('txt').value);
 	document.getElementById('txt').addEventListener('keypress', function() {
@@ -50,7 +48,7 @@ function draw(txt) {
 	ctx.clearRect(0,0,10000,10000)
 	var arr = txt.split("\n");
 	for(var i=0; i<arr.length; i++) {
-		writeLine2(arr[i],0,i) 
+		writeLine2(arr[i],i) 
 	}
 	dequeue(ctx);
   }catch(e){
@@ -58,11 +56,11 @@ function draw(txt) {
   }
 }
 
-function writeLine2(str, m,n)
+function writeLine2(str, n)
 {
 	var array = split_into_syllables(str);
 	for(var i=0; i<array.length; i++) {
-		output_syllable(array[i], m+i,n);
+		output_syllable(array[i], i,n);
 	}
 }
 
