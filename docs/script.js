@@ -19,8 +19,21 @@ function load_all_imgs()
 
 load_all_imgs();
 
+var timeout;
+
+    
 onload = function() {
-  draw(document.getElementById('txt').value);
+	draw(document.getElementById('txt').value);
+	document.getElementById('txt').addEventListener('keypress', function() {
+	if(timeout) {
+		clearTimeout(timeout);
+		timeout = null;
+	}
+	timeout = setTimeout(function(){
+		draw(document.getElementById('txt').value);
+	},150);
+	
+	}, false)
 };
 
 var WIDTH = 42;
