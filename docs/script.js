@@ -1,4 +1,6 @@
-﻿var IMGS = {};
+﻿
+/** pre-loading **/
+var IMGS = {};
 var LOADED = {};
 
 function load_all_imgs()
@@ -34,6 +36,28 @@ onload = function() {
 	}, false)
 };
 
+
+/** queue **/
+var QUEUE = [];
+
+function make_image(chr,x,y)
+{
+	if(chr === "_") chr = "space";
+	if(chr === ".") chr = "denpa";
+	QUEUE[QUEUE.length] = [IMGS[chr], x, y];
+}
+
+function dequeue(ctx)
+{
+	for(var i=0; i<QUEUE.length; i++){
+		var obj = QUEUE[i];
+		ctx.drawImage(obj[0],obj[1],obj[2]);
+	}
+	QUEUE = [];
+}
+
+
+/** draw **/
 var WIDTH = 42;
 var VSPACE = 100;
 
@@ -62,24 +86,6 @@ function writeLine2(str, n)
 	for(var i=0; i<array.length; i++) {
 		output_syllable(array[i], 30+WIDTH*i, n);
 	}
-}
-
-var QUEUE = [];
-
-function make_image(chr,x,y)
-{
-	if(chr === "_") chr = "space";
-	if(chr === ".") chr = "denpa";
-	QUEUE[QUEUE.length] = [IMGS[chr], x, y];
-}
-
-function dequeue(ctx)
-{
-	for(var i=0; i<QUEUE.length; i++){
-		var obj = QUEUE[i];
-		ctx.drawImage(obj[0],obj[1],obj[2]);
-	}
-	QUEUE = [];
 }
 
 function output_syllable(str, x_pos,n)
