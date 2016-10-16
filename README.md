@@ -5,6 +5,7 @@ Just access https://sozysozbot.github.io/zbalermorna_renderer/renderer.htm to tr
 Uses `canvas`; thus, it might not work well with old browsers.  
 
 ## Change log
+2016/10/17 Make `.` and `'` half the width of other consonants  
 2016/10/16 Now with faster rendering & automatic output  
 2016/10/15 Can now handle diphthongs and semivowels  
 
@@ -13,4 +14,3 @@ Uses `canvas`; thus, it might not work well with old browsers.
 2. Silence, stretch & intonation
 3. Dynamics (stress dots)
 4. Attitudinal shorthand
-5. Make `.` and `'` half the width of other consonants
