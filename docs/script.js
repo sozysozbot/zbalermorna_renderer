@@ -24,17 +24,18 @@ load_all_imgs();
 
 var timeout;
 onload = function() {
+	document.getElementById('txt').focus();
 	draw(document.getElementById('txt').value);
-	document.getElementById('txt').addEventListener('keyup', function() {
-	if(timeout) {
-		clearTimeout(timeout);
-		timeout = null;
-	}
-	timeout = setTimeout(function(){
-		draw(document.getElementById('txt').value);
-	},150);
 	
-	}, false)
+	document.getElementById('txt').addEventListener('keyup', function() {
+		if(timeout) {
+			clearTimeout(timeout);
+			timeout = null;
+		}
+		timeout = setTimeout(function(){
+			draw(document.getElementById('txt').value);
+		},150);
+	}, false);
 };
 
 
