@@ -5,7 +5,7 @@ var LOADED = {};
 
 function load_all_imgs()
 {
-	var list = ["a","ai","au","b","c","d","denpa","denpa_pimu","e","ei","f","g","h","h_pimu","i","j","k","l","m","n","o","oi","p","q","r","s","t","u","v","w","x","y","z","space"];
+	var list = ["a","ai","au","b","c","cnimaho","d","denpa","denpa_pimu","e","ei","f","g","h","h_pimu","i","j","k","l","m","n","o","oi","p","q","r","s","t","u","v","w","x","y","z","space"];
 	for(var i=0; i<list.length; i++) {
 		LOADED[list[i]] = false;
 	}
