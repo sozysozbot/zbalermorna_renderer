@@ -2,7 +2,7 @@
 /** pre-loading **/
 var IMGS = {};
 var LOADED = {};
-var USE_CAS = true; // attitidunal shorthand
+var USE_CAS = true; // attitudinal shorthand
 
 function load_all_imgs()
 {
@@ -87,8 +87,33 @@ function writeLine2(str, n)
 	var array = split_into_syllables(str);
 	var pos = 25;
 	for(var i=0; i<array.length; i++) {
-		pos = output_syllable(array[i], pos, n);
+		if(USE_CAS 
+		&& array[i].charAt(0) === "." 
+		&& array[i].length > 1
+		&& array[i+1]
+		&& array[i+1].length > 1
+		&& array[i+1].charAt(0) === "h" 
+		) { // attitudinal shorthand
+			pos = output_CAS(array[i], array[i+1], pos, n);
+			i++;
+		} else {
+			pos = output_syllable(array[i], pos, n);
+		}
 	}
+}
+
+function output_CAS(syl1, syl2, x_pos, n)
+{
+	var vow1 = syl1.slice(1);
+	var vow2 = syl2.slice(1);
+	reject_unknown_diphthongs(vow1);
+	reject_unknown_diphthongs(vow2);
+	
+	make_image("cnimaho", x_pos, 30+VSPACE*n);
+	make_image(vow1, x_pos - WIDTH/4, 30+VSPACE*n);
+	make_image(vow2, x_pos + WIDTH/4, 30+VSPACE*n);
+	
+	return x_pos + WIDTH; // next x_pos
 }
 
 function output_syllable(str, x_pos,n)
@@ -98,9 +123,7 @@ function output_syllable(str, x_pos,n)
 	make_image(conson, x_pos, 30+VSPACE*n);
 	if(str.length >= 2) {
 		var vowel = str.slice(1);
-		if(["a","e","i","o","u","y","ai","ei","oi","au"].indexOf(vowel) === -1) {
-			throw new Error("Unrecognized vowel sequence \""+vowel+"\"");
-		}
+		reject_unknown_diphthongs(vowel)
 		if(half) {
 			make_image(vowel, x_pos - WIDTH/4, 30+VSPACE*n);
 		} else {
@@ -108,4 +131,11 @@ function output_syllable(str, x_pos,n)
 		}
 	}
 	return x_pos + (half ? WIDTH/2 : WIDTH); // next x_pos
+}
+
+function reject_unknown_diphthongs(vowel)
+{
+	if(["a","e","i","o","u","y","ai","ei","oi","au"].indexOf(vowel) === -1) {
+		throw new Error("Unrecognized vowel sequence \""+vowel+"\"");
+	}
 }
