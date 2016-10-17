@@ -24,7 +24,7 @@ load_all_imgs();
 var timeout;
 onload = function() {
 	draw(document.getElementById('txt').value);
-	document.getElementById('txt').addEventListener('keypress', function() {
+	document.getElementById('txt').addEventListener('keyup', function() {
 	if(timeout) {
 		clearTimeout(timeout);
 		timeout = null;
