@@ -1,9 +1,11 @@
-﻿var IMGS = {};
+﻿
+/** pre-loading **/
+var IMGS = {};
 var LOADED = {};
 
 function load_all_imgs()
 {
-	var list = ["a","ai","au","b","c","d","denpa","e","ei","f","g","h","i","j","k","l","m","n","o","oi","p","q","r","s","t","u","v","w","x","y","z","space"];
+	var list = ["a","ai","au","b","c","d","denpa","denpa_pimu","e","ei","f","g","h","h_pimu","i","j","k","l","m","n","o","oi","p","q","r","s","t","u","v","w","x","y","z","space"];
 	for(var i=0; i<list.length; i++) {
 		LOADED[list[i]] = false;
 	}
@@ -34,6 +36,29 @@ onload = function() {
 	}, false)
 };
 
+
+/** queue **/
+var QUEUE = [];
+
+function make_image(chr,x,y)
+{
+	if(chr === "_") chr = "space";
+	if(chr === ".") chr = "denpa_pimu";
+	if(chr === "h") chr = "h_pimu";
+	QUEUE[QUEUE.length] = [IMGS[chr], x, y];
+}
+
+function dequeue(ctx)
+{
+	for(var i=0; i<QUEUE.length; i++){
+		var obj = QUEUE[i];
+		ctx.drawImage(obj[0],obj[1],obj[2]);
+	}
+	QUEUE = [];
+}
+
+
+/** draw **/
 var WIDTH = 42;
 var VSPACE = 100;
 
@@ -59,39 +84,27 @@ function draw(txt) {
 function writeLine2(str, n)
 {
 	var array = split_into_syllables(str);
+	var pos = 25;
 	for(var i=0; i<array.length; i++) {
-		output_syllable(array[i], 30+WIDTH*i, n);
+		pos = output_syllable(array[i], pos, n);
 	}
-}
-
-var QUEUE = [];
-
-function make_image(chr,x,y)
-{
-	if(chr === "_") chr = "space";
-	if(chr === ".") chr = "denpa";
-	QUEUE[QUEUE.length] = [IMGS[chr], x, y];
-}
-
-function dequeue(ctx)
-{
-	for(var i=0; i<QUEUE.length; i++){
-		var obj = QUEUE[i];
-		ctx.drawImage(obj[0],obj[1],obj[2]);
-	}
-	QUEUE = [];
 }
 
 function output_syllable(str, x_pos,n)
 {
-	make_image(str.charAt(0), x_pos, 30+VSPACE*n);
+	var conson = str.charAt(0);
+	var half = (conson === "." || conson === "h");
+	make_image(conson, x_pos, 30+VSPACE*n);
 	if(str.length >= 2) {
 		var vowel = str.slice(1);
-	
-		if(["a","e","i","o","u","y","ai","ei","oi","au"].indexOf(vowel) !== -1) {
-			make_image(vowel, x_pos, 30+VSPACE*n);
-		} else {
+		if(["a","e","i","o","u","y","ai","ei","oi","au"].indexOf(vowel) === -1) {
 			throw new Error("Unrecognized vowel sequence \""+vowel+"\"");
 		}
+		if(half) {
+			make_image(vowel, x_pos - WIDTH/4, 30+VSPACE*n);
+		} else {
+			make_image(vowel, x_pos, 30+VSPACE*n);
+		}
 	}
+	return x_pos + (half ? WIDTH/2 : WIDTH); // next x_pos
 }
