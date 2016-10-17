@@ -2,6 +2,7 @@
 /** pre-loading **/
 var IMGS = {};
 var LOADED = {};
+var USE_CAS = true; // attitidunal shorthand
 
 function load_all_imgs()
 {
