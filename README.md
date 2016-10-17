@@ -13,4 +13,3 @@ Uses `canvas`; thus, it might not work well with old browsers.
 1. Full vowels (used for cmene)
 2. Silence, stretch & intonation
 3. Dynamics (stress dots)
-4. Attitudinal shorthand
