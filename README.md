@@ -4,7 +4,8 @@ A simple, on-browser renderer of [zbalermorna](https://mw.lojban.org/images/b/b3
 Just access https://sozysozbot.github.io/zbalermorna_renderer/renderer.htm to try it out.  
 Uses `canvas`; thus, it might not work well with old browsers.  
 
-## Change log
+## Major changes
+2016/10/17 Implement attitudinal shorthand  
 2016/10/17 Make `.` and `'` half the width of other consonants  
 2016/10/16 Now with faster rendering & automatic output  
 2016/10/15 Can now handle diphthongs and semivowels  
