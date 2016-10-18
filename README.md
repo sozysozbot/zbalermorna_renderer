@@ -14,3 +14,7 @@ Uses `canvas`; thus, it might not work well with old browsers.
 1. Full vowels (used for cmene)
 2. Silence, stretch & intonation
 3. Dynamics (stress dots)
+
+## What you can contribute
+1. Think up of a good lojban phrase for "attitudinal shorthand"
+2. Use & suggest improvements
