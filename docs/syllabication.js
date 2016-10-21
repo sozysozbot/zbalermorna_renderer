@@ -1,5 +1,27 @@
 ﻿var REQUIRE_DOTSIDE = true;
+
+
 // identify cmene and mark it as such
+/*
+
+identify_cmene("la.kocon.ctuca la .  soran . .ui fo la .lojban .u'i")
+[{"fadni":"la"},
+ {"cmene":".kocon."},
+ {"fadni":"ctuca la "},
+ {"cmene":".  soran ."},
+ {"fadni":" .ui fo la "},
+ {"cmene":".lojban ."},
+ {"fadni":"u'i"}
+]
+
+identify_cmene(".i .ui.ui.ui.ui. tadni fe la .lojban. fa mi")
+[{"fadni":"i .ui.ui.ui.ui. tadni fe la "},
+ {"cmene":".lojban."},
+ {"fadni":" fa mi"}
+]
+
+*/
+
 function identify_cmene(str)
 {
 	var ans = [];
@@ -7,7 +29,9 @@ function identify_cmene(str)
 		/* FIXME */
 	} else {
 		//loops are required to handle something like ".loj.ban."
+		//detect cmene
 		while(str.indexOf(".") + 1) { //after finding a period
+			// merge normal texts if preceded by normal texts
 			if(ans[ans.length - 1] && ans[ans.length - 1].fadni) {
 				ans[ans.length - 1].fadni += str.slice(0,str.indexOf("."));
 			} else {
@@ -25,11 +49,22 @@ function identify_cmene(str)
 				str = str.slice(match[0].length - 1); //leave the period
 			}
 		}
+		
+		// str still might have unprocessed fadni
 		if(ans[ans.length - 1] && ans[ans.length - 1].fadni) {
 			ans[ans.length - 1].fadni += str;
 		} else {
 			ans[ans.length] = {"fadni": str};
 		}
+		
+		
+		// remove initial period
+		ans = ans.map(function(obj){
+			if(obj.fadni && obj.fadni.charAt(0) === ".") {
+				obj.fadni = obj.fadni.slice(1);
+			}
+			return obj;
+		});
 	}
 	
 	return ans;
