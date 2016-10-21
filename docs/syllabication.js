@@ -71,6 +71,22 @@ function identify_cmene(str)
 }
 
 // main parser
+
+function split_into_bases(str)
+{
+	var cmene_split = identify_cmene(str);
+	var arr = [];
+	
+	for(var i=0; i < cmene_split.length; i++) {
+		if(cmene_split[i].fadni) { //fadni
+			arr = arr.concat(split_into_syllables(cmene_split[i].fadni));
+		} else {
+			throw new Error("FIXME!");
+		}
+	}
+	return arr;
+}
+
 function split_into_syllables(str)
 {
 	str = str.replace(/['’]/g,"h");

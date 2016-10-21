@@ -85,7 +85,7 @@ function draw(txt) {
 
 function writeLine2(str, n)
 {
-	var array = split_into_syllables(str);
+	var array = split_into_bases(str);
 	var pos = 25;
 	for(var i=0; i<array.length; i++) {
 		if(USE_CAS 
