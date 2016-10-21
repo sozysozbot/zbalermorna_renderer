@@ -6,7 +6,7 @@ var USE_CAS = true; // attitudinal shorthand
 
 function load_all_imgs()
 {
-	var list = ["a","a_sepli","ai","ai_sepli","au","au_sepli","b","c","cnimaho","d","denpa","denpa_pimu","e","e_sepli","ei","ei_sepli","f","g","h","h_pimu","i","i_sepli","j","k","l","m","n","o","o_sepli","oi","oi_sepli","p","q","r","s","t","u","u_sepli","v","w","x","y","y_sepli","z","space"];
+	var list = ["a","a_sepli","ai","ai_sepli","au","au_sepli","b","c","cnimaho","d","denpa","denpa_pimu","e","e_sepli","ei","ei_sepli","f","g","h","h_pimu","i","i_sepli","j","k","l","m","n","o","o_sepli","oi","oi_sepli","p","q","r","s","t","u","u_sepli","v","w","x","y","y_sepli","z","canlu"];
 	for(var i=0; i<list.length; i++) {
 		LOADED[list[i]] = false;
 	}
@@ -44,7 +44,7 @@ var QUEUE = [];
 
 function make_image(chr,x,y)
 {
-	if(chr === "_") chr = "space";
+	if(chr === "_") chr = "canlu";
 	if(chr === ".") chr = "denpa_pimu";
 	if(chr === "h") chr = "h_pimu";
 	QUEUE[QUEUE.length] = [IMGS[chr], x, y];
