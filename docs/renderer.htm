@@ -12,8 +12,17 @@
 .uu ku te vecnu so'u fadjau 
 lo remyzei bidzai</textarea>
 	<input type="button" value="ciska / write" onclick="draw(document.getElementById('txt').value)"/>
-	<span><input type="checkbox" checked="checked" onchange="USE_CAS = this.checked;draw(document.getElementById('txt').value)" />pilno lo cnima'o co'e / use attitudinal shorthand</span>
-	<br><br>
+	<table>
+		<tr>
+			<td><input type="checkbox" checked="checked" onchange="USE_CAS = this.checked;draw(document.getElementById('txt').value)" /></td>
+			<td>pilno lo cnima'o co'e / use attitudinal shorthand</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" checked="checked" onchange="REQUIRE_DOTSIDE = this.checked;draw(document.getElementById('txt').value)" disabled="disabled" /></td>
+			<td>.ei lo cmevla cu zvabi'i re lo me denpa bu / cmevla must have periods on both sides</td>
+		</tr>
+	</table>
+	
     <canvas id="c1" width="810" height="500"></canvas>
 	<div style="width:0px; height:0px; overflow:hidden">
 		<img src="img/a.png" />
