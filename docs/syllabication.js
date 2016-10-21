@@ -32,7 +32,7 @@ function identify_cmene(str)
 		//detect cmene
 		while(str.indexOf(".") + 1) { //after finding a period
 			// merge normal texts if preceded by normal texts
-			if(ans[ans.length - 1] && ans[ans.length - 1].fadni) {
+			if(ans[ans.length - 1] && ans[ans.length - 1].fadni != null) {
 				ans[ans.length - 1].fadni += str.slice(0,str.indexOf("."));
 			} else {
 				ans[ans.length] = {"fadni": str.slice(0,str.indexOf("."))};
@@ -51,7 +51,7 @@ function identify_cmene(str)
 		}
 		
 		// str still might have unprocessed fadni
-		if(ans[ans.length - 1] && ans[ans.length - 1].fadni) {
+		if(ans[ans.length - 1] && ans[ans.length - 1].fadni != null) {
 			ans[ans.length - 1].fadni += str;
 		} else {
 			ans[ans.length] = {"fadni": str};
@@ -60,7 +60,7 @@ function identify_cmene(str)
 		
 		// remove initial period
 		ans = ans.map(function(obj){
-			if(obj.fadni && obj.fadni.charAt(0) === ".") {
+			if(obj.fadni != null && obj.fadni.charAt(0) === ".") {
 				obj.fadni = obj.fadni.slice(1);
 			}
 			return obj;
@@ -78,10 +78,10 @@ function split_into_bases(str)
 	var arr = [];
 	
 	for(var i=0; i < cmene_split.length; i++) {
-		if(cmene_split[i].fadni) { //fadni
+		if(cmene_split[i].fadni != null) { //fadni
 			arr = arr.concat(split_into_syllables(cmene_split[i].fadni));
 		} else {
-			throw new Error("FIXME!");
+			arr = arr.concat(split_cmene_into_syllables(cmene_split[i].cmene));
 		}
 	}
 	return arr;
@@ -131,5 +131,22 @@ function split_into_syllables(str)
 		}
 		
 	}
+	return arr;
+}
+
+function split_cmene_into_syllables(str)
+{
+	var match = str.match(/[abcdefghijklmnopqrstuvwxyz]*[bcdfghjklmnprstvxz]/);
+	if(!match) {
+		throw new Error("BUG!");
+	}
+	var cmene = match[0];
+	
+	// FIXME: diphthong & mandatory spacing not handled
+	var arr = cmene.split("").map(function(c){
+		if(["a","e","i","o","u","y"].indexOf(c) + 1) return c+"_sepli";
+		return c;
+	});
+	
 	return arr;
 }

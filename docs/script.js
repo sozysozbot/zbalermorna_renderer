@@ -119,6 +119,11 @@ function output_CAS(syl1, syl2, x_pos, n)
 
 function output_syllable(str, x_pos,n)
 {
+	if(str.indexOf("_sepli") + 1) {
+		make_image(str, x_pos, 30+VSPACE*n);
+		return x_pos + WIDTH;
+	}
+	
 	var conson = str.charAt(0);
 	var half = (conson === "." || conson === "h");
 	make_image(conson, x_pos, 30+VSPACE*n);
