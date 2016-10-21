@@ -71,9 +71,9 @@ function identify_cmene(str)
 }
 
 // main parser
-
 function split_into_bases(str)
 {
+	str = str.replace(/['’]/g,"h");
 	var cmene_split = identify_cmene(str);
 	var arr = [];
 	
@@ -89,7 +89,6 @@ function split_into_bases(str)
 
 function split_into_syllables(str)
 {
-	str = str.replace(/['’]/g,"h");
 	var arr = [];
 	while(str.length){
 		if(str.charAt(0) === " "){ 
