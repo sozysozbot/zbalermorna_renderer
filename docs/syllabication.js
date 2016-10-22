@@ -81,8 +81,22 @@ function split_into_bases(str)
 	
 	for(var i=0; i < cmene_split.length; i++) {
 		if(cmene_split[i].fadni != null) { //fadni
-			arr = arr.concat(split_fadni_into_syllables(cmene_split[i].fadni));
+			var split = split_fadni_into_syllables(cmene_split[i].fadni);
+			
+			//insert space after cmene
+			if(cmene_split[i-1]
+			&& cmene_split[i-1].cmene != null
+			&& split[0]
+			&& split[0] !== "_") {
+				arr[arr.length] = "_";
+			}
+			
+			arr = arr.concat(split);
 		} else {
+			//insert pause before cmene
+			if(arr[arr.length-1] != null && arr[arr.length-1] !== "_") {
+				arr[arr.length] = "_";
+			}
 			arr = arr.concat(split_cmene_into_symbols(cmene_split[i].cmene));
 		}
 	}
