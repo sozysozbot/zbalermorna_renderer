@@ -48,6 +48,7 @@ function make_image(chr,x,y)
 	if(chr === ".") chr = "denpa_pimu";
 	if(chr === "h") chr = "h_pimu";
 	QUEUE[QUEUE.length] = [IMGS[chr], x, y];
+	if(!IMGS[chr]) throw new Error("bug: "+ chr + " is not known")
 }
 
 function dequeue(ctx)
@@ -85,7 +86,7 @@ function draw(txt) {
 
 function writeLine2(str, n)
 {
-	var array = split_into_syllables(str);
+	var array = split_into_bases(str);
 	var pos = 25;
 	for(var i=0; i<array.length; i++) {
 		if(USE_CAS 
@@ -119,6 +120,11 @@ function output_CAS(syl1, syl2, x_pos, n)
 
 function output_syllable(str, x_pos,n)
 {
+	if(str.indexOf("_sepli") + 1) {
+		make_image(str, x_pos, 30+VSPACE*n);
+		return x_pos + WIDTH;
+	}
+	
 	var conson = str.charAt(0);
 	var half = (conson === "." || conson === "h");
 	make_image(conson, x_pos, 30+VSPACE*n);

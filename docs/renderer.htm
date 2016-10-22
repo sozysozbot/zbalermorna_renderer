@@ -1,66 +1,80 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
   <head>
+    <meta charset="UTF-8">
     <title>ZLM_renderer</title>
     <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
 	<style>canvas{border:1px solid green}</style>
+	<script type="text/javascript" src="split_fadni_into_syllables.js"></script>
+	<script type="text/javascript" src="split_cmene_into_symbols.js"></script>
 	<script type="text/javascript" src="syllabication.js"></script>
 	<script type="text/javascript" src="script.js"></script>
   </head>
 
   <body>
-    <textarea rows="4" cols="28" id="txt">.i .ia pa loitse xagji dotco
-.uu ku te vecnu so'u fadjau 
-lo remyzei bidzai</textarea>
+    <textarea rows="4" cols="36" id="txt">i .ia pa loitse xagji dotco .ŭu ku te 
+vecnu so'u fadjau lo remyzei bidzai
+.tciuauas.tciauas.iauas. qawo
+.nuiok. .meiin. .me,iin. .wein. .we,in.</textarea>
 	<input type="button" value="ciska / write" onclick="draw(document.getElementById('txt').value)"/>
-	<span><input type="checkbox" checked="checked" onchange="USE_CAS = this.checked;draw(document.getElementById('txt').value)" />pilno lo cnima'o co'e / use attitudinal shorthand</span>
-	<br><br>
-    <canvas id="c1" width="810" height="500"></canvas>
+	<table>
+		<tr>
+			<td><input type="checkbox" checked="checked" onchange="USE_CAS = this.checked;draw(document.getElementById('txt').value)" /></td>
+			<td>pilno lo cnima'o co'e / use attitudinal shorthand</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" checked="checked" onchange="REQUIRE_DOTSIDE = this.checked;draw(document.getElementById('txt').value)" disabled="disabled" /></td>
+			<td>ro cmevla cu se sruri lo depybu'i / cmevla must have periods on both sides</td>
+		</tr>
+	</table>
+	
+    <canvas id="c1" width="1100" height="450"></canvas>
 	<div style="width:0px; height:0px; overflow:hidden">
-		<img src="img/a.png" />
-		<img src="img/a_sepli.png" />
-		<img src="img/ai.png" />
-		<img src="img/ai_sepli.png" />
-		<img src="img/au.png" />
-		<img src="img/au_sepli.png" />
-		<img src="img/b.png" />
-		<img src="img/c.png" />
-		<img src="img/cnimaho.png" />
-		<img src="img/d.png" />
-		<img src="img/denpa.png" />
-		<img src="img/denpa_pimu.png" />
-		<img src="img/e.png" />
-		<img src="img/e_sepli.png" />
-		<img src="img/ei.png" />
-		<img src="img/ei_sepli.png" />
-		<img src="img/f.png" />
-		<img src="img/g.png" />
-		<img src="img/h.png" />
-		<img src="img/h_pimu.png" />
-		<img src="img/i.png" />
-		<img src="img/i_sepli.png" />
-		<img src="img/j.png" />
-		<img src="img/k.png" />
-		<img src="img/l.png" />
-		<img src="img/m.png" />
-		<img src="img/n.png" />
-		<img src="img/o.png" />
-		<img src="img/o_sepli.png" />
-		<img src="img/oi.png" />
-		<img src="img/oi_sepli.png" />
-		<img src="img/p.png" />
-		<img src="img/q.png" />
-		<img src="img/r.png" />
-		<img src="img/s.png" />
-		<img src="img/t.png" />
-		<img src="img/u.png" />
-		<img src="img/u_sepli.png" />
-		<img src="img/v.png" />
-		<img src="img/w.png" />
-		<img src="img/x.png" />
-		<img src="img/y.png" />
-		<img src="img/y_sepli.png" />
-		<img src="img/z.png" />
-		<img src="img/canlu.png" />
+		<img alt="" src="img/a.png" />
+		<img alt="" src="img/a_sepli.png" />
+		<img alt="" src="img/ai.png" />
+		<img alt="" src="img/ai_sepli.png" />
+		<img alt="" src="img/au.png" />
+		<img alt="" src="img/au_sepli.png" />
+		<img alt="" src="img/b.png" />
+		<img alt="" src="img/c.png" />
+		<img alt="" src="img/cnimaho.png" />
+		<img alt="" src="img/d.png" />
+		<img alt="" src="img/denpa.png" />
+		<img alt="" src="img/denpa_pimu.png" />
+		<img alt="" src="img/e.png" />
+		<img alt="" src="img/e_sepli.png" />
+		<img alt="" src="img/ei.png" />
+		<img alt="" src="img/ei_sepli.png" />
+		<img alt="" src="img/f.png" />
+		<img alt="" src="img/g.png" />
+		<img alt="" src="img/h.png" />
+		<img alt="" src="img/h_pimu.png" />
+		<img alt="" src="img/i.png" />
+		<img alt="" src="img/i_sepli.png" />
+		<img alt="" src="img/j.png" />
+		<img alt="" src="img/k.png" />
+		<img alt="" src="img/l.png" />
+		<img alt="" src="img/m.png" />
+		<img alt="" src="img/n.png" />
+		<img alt="" src="img/o.png" />
+		<img alt="" src="img/o_sepli.png" />
+		<img alt="" src="img/oi.png" />
+		<img alt="" src="img/oi_sepli.png" />
+		<img alt="" src="img/p.png" />
+		<img alt="" src="img/q.png" />
+		<img alt="" src="img/r.png" />
+		<img alt="" src="img/s.png" />
+		<img alt="" src="img/t.png" />
+		<img alt="" src="img/u.png" />
+		<img alt="" src="img/u_sepli.png" />
+		<img alt="" src="img/v.png" />
+		<img alt="" src="img/w.png" />
+		<img alt="" src="img/x.png" />
+		<img alt="" src="img/y.png" />
+		<img alt="" src="img/y_sepli.png" />
+		<img alt="" src="img/z.png" />
+		<img alt="" src="img/canlu.png" />
 	</div>
   </body>
 </html>
