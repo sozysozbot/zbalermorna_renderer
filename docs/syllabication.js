@@ -112,14 +112,14 @@ function split_cmene_into_symbols(str)
 	var arr2 = [];
 	var str = cmene;
 	while(str.length) {
-		if("bcdfghjklmnprstvxz".indexOf(str.charAt(0))) { //consonant
+		if("bcdfghjklmnprstvxz".split("").indexOf(str.charAt(0)) !== -1) { //consonant
 			arr2[arr2.length] = str.charAt(0);
 			//falling diphthongs -> parse
 			if(["au","ai","ei","oi"].indexOf(str.slice(1,3)) !== -1) {
 				arr2[arr2.length] = str.slice(1,3) + "_sepli";
 				str = str.slice(3);
 				continue;
-			} else if(["a","e","i","o","u","y"].indexOf(str.charAt(1))) {
+			} else if(["a","e","i","o","u","y"].indexOf(str.charAt(1)) !== -1) {
 				arr2[arr2.length] = str.charAt(1) + "_sepli";
 				str = str.slice(2);
 				continue;
@@ -134,7 +134,7 @@ function split_cmene_into_symbols(str)
 				continue;
 			} else if(["i","u","q","w"].indexOf(str.charAt(0)) !== -1   // iai -> qai; iaia -> qaqa
 				   && ["ai","ei","oi","au"].indexOf(str.slice(1,3)) !== -1
-				   && ["a","e","i","o","u","y"].indexOf(str.charAt(3) === -1) {
+				   && ["a","e","i","o","u","y"].indexOf(str.charAt(3)) === -1) {
 				arr2[arr2.length] = {"i":"q","q":"q","u":"w","w":"w"}[str.charAt(0)];
 				arr2[arr2.length] = str.slice(1,3) + "_sepli";
 				str = str.slice(3);
