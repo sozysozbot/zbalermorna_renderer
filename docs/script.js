@@ -48,6 +48,7 @@ function make_image(chr,x,y)
 	if(chr === ".") chr = "denpa_pimu";
 	if(chr === "h") chr = "h_pimu";
 	QUEUE[QUEUE.length] = [IMGS[chr], x, y];
+	if(!IMGS[chr]) throw new Error("bug: "+ chr + " is not known")
 }
 
 function dequeue(ctx)
