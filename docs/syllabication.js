@@ -39,7 +39,7 @@ function identify_cmene(str)
 			}
 			
 			str = str.slice(str.indexOf("."));
-			var match = str.match(/^\.\s*[abcdefghijklmnopqrstuvwxyz]*[bcdfghjklmnprstvxz]\s*\./);
+			var match = str.match(/^\.\s*[abcdefghijklmnopqrstuvwxyz,]*[bcdfghjklmnprstvxz]\s*\./);
 			if(!match){
 				str = str.slice(1); //skip the period
 				ans[ans.length - 1].fadni += ".";
@@ -103,7 +103,7 @@ function split_into_bases(str)
 */
 function split_cmene_into_symbols(str)
 {
-	var match = str.match(/[abcdefghijklmnopqrstuvwxyz]*[bcdfghjklmnprstvxz]/);
+	var match = str.match(/[abcdefghijklmnopqrstuvwxyz,]*[bcdfghjklmnprstvxz]/);
 	if(!match) {
 		throw new Error("BUG!");
 	}
@@ -127,6 +127,9 @@ function split_cmene_into_symbols(str)
 				str = str.slice(1);
 				continue;
 			}
+		} else if(str.charAt(0) === ",") { //serves as a mere splitter
+			str = str.slice(1);
+			continue;
 		} else { //vowel-syllable; allows iV and uV
 			if(["au","ai","ei","oi"].indexOf(str.slice(0,2)) !== -1) {
 				arr2[arr2.length] = str.slice(0,2) + "_sepli";
