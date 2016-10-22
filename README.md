@@ -17,9 +17,11 @@ Conforms to BPFK Decision "ban on semivowels preceded by a consonant" when parsi
 2. Dynamics (stress dots)
 3. slaka bu inside brivla (allowed, at least in CLL)
 4. Allow ".qa"
+5. Report errors in a more user-friendly way
+6. How about making a dropbox that let you select the language? (and how can I do that without reloading?)
 
 ## How you can contribute
 1. Think up of a good lojban phrase for "attitudinal shorthand"
 2. Think up of a good lojban word for "renderer"
 3. Use & suggest improvements
-4. Bust my parser
+4. Bust my parser  &lt;--  busted by [.cogas.](https://github.com/cogas)
