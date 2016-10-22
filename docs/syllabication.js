@@ -74,6 +74,8 @@ function identify_cmene(str)
 function split_into_bases(str)
 {
 	str = str.replace(/['’]/g,"h");
+	str = str.replace(/ĭ/g,"q");
+	str = str.replace(/ŭ/g,"w");
 	var cmene_split = identify_cmene(str);
 	var arr = [];
 	
