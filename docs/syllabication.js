@@ -79,15 +79,15 @@ function split_into_bases(str)
 	
 	for(var i=0; i < cmene_split.length; i++) {
 		if(cmene_split[i].fadni != null) { //fadni
-			arr = arr.concat(split_into_syllables(cmene_split[i].fadni));
+			arr = arr.concat(split_fadni_into_syllables(cmene_split[i].fadni));
 		} else {
-			arr = arr.concat(split_cmene_into_syllables(cmene_split[i].cmene));
+			arr = arr.concat(split_cmene_into_symbols(cmene_split[i].cmene));
 		}
 	}
 	return arr;
 }
 
-function split_into_syllables(str)
+function split_fadni_into_syllables(str)
 {
 	var arr = [];
 	while(str.length){
@@ -134,7 +134,7 @@ function split_into_syllables(str)
 	return arr;
 }
 
-function split_cmene_into_syllables(str)
+function split_cmene_into_symbols(str)
 {
 	var match = str.match(/[abcdefghijklmnopqrstuvwxyz]*[bcdfghjklmnprstvxz]/);
 	if(!match) {
