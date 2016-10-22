@@ -16,8 +16,10 @@ Conforms to BPFK Decision "ban on semivowels preceded by a consonant" when parsi
 1. Silence, stretch & intonation
 2. Dynamics (stress dots)
 3. slaka bu inside brivla (allowed, at least in CLL)
+4. Allow ".qa"
 
-## What you can contribute
+## How you can contribute
 1. Think up of a good lojban phrase for "attitudinal shorthand"
 2. Think up of a good lojban word for "renderer"
 3. Use & suggest improvements
+4. Bust my parser
