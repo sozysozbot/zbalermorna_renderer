@@ -19,6 +19,8 @@ Conforms to BPFK Decision "ban on semivowels preceded by a consonant" when parsi
 4. Allow ".qa"
 5. Report errors in a more user-friendly way
 6. How about making a dropbox that let you select the language? (and how can I do that without reloading?)
+7. Make canvas area resizable
+8. Toggle whether to use lines & character size
 
 ## How you can contribute
 1. Think up of a good lojban phrase for "attitudinal shorthand"
