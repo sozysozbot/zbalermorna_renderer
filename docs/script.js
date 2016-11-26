@@ -133,6 +133,10 @@ function output_syllable(str, x_pos,n)
 		reject_unknown_diphthongs(vowel)
 		if(half) {
 			make_image(vowel, x_pos - WIDTH/4, 30+VSPACE*n);
+		} else if(["p","t","k"].indexOf(conson) !== -1){
+			make_image(vowel, x_pos+3, 30+VSPACE*n);
+		} else if(["s"].indexOf(conson) !== -1){
+			make_image(vowel, x_pos-2, 30+VSPACE*n);
 		} else {
 			make_image(vowel, x_pos, 30+VSPACE*n);
 		}
