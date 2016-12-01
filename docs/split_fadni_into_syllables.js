@@ -33,6 +33,9 @@
 			str = str.slice(syl[0].length);
 			arr[arr.length] = syl[0];
 			continue;
+		} else if(str.charAt(0) === ",") { // slaka bu
+			str = str.slice(1); //just ignore and continue
+			continue;
 		} else {
 			str = str.slice(1); //failed to parse a character; thus overlooks it
 			if(arr[arr.length-1] !== "_" && str.charAt(0) !== " ") { // "a*b" -> "a b"; "a* b" -> "a b"
