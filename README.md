@@ -6,6 +6,7 @@ Uses `canvas`; thus, it might not work well with old browsers.
 Conforms to BPFK Decision "ban on semivowels preceded by a consonant" when parsing cmevla
 
 ## Major changes
+2016/11/26 Better rendering for syllables with `p`, `t`, `k` and `s`
 2016/10/22 Implement full vowels; can now handle cmevla (also allow slaka bu inside cmevla)  
 2016/10/17 Implement attitudinal shorthand  
 2016/10/17 Make `.` and `'` half the width of other consonants  
